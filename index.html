@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Architect's Blueprint — Sriram</title>
+<meta name="description" content="Sriram's personalised mastery platform — Enterprise Architect · AI Leader · Startup Founder. 365-day curriculum.">
+<meta name="theme-color" content="#7c6fff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Blueprint">
+<link rel="manifest" href="#" id="pwa-manifest">
+<!-- Inline SVG icon as data URI for home screen -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%230f0f1a'/%3E%3Ccircle cx='96' cy='96' r='32' fill='none' stroke='%237c6fff' stroke-width='8'/%3E%3Ccircle cx='96' cy='96' r='10' fill='%237c6fff'/%3E%3Cline x1='96' y1='54' x2='96' y2='40' stroke='%237c6fff' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='96' y1='152' x2='96' y2='138' stroke='%237c6fff' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='54' y1='96' x2='40' y2='96' stroke='%237c6fff' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='152' y1='96' x2='138' y2='96' stroke='%237c6fff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08080f;--bg2:#0f0f1a;--bg3:#161625;--bg4:#1e1e30;
+  --border:#ffffff0f;--border2:#ffffff1a;--border3:#ffffff28;
+  --text:#ddddf5;--muted:#6868a0;--muted2:#9090c0;
+  --accent:#7c6fff;--accent-dim:#7c6fff33;
+  --gold:#e8b84b;--gold-dim:#e8b84b22;
+  --green:#3dd68c;--green-dim:#3dd68c22;
+  --red:#ff6b6b;--red-dim:#ff6b6b22;
+  --teal:#2dd4bf;--teal-dim:#2dd4bf22;
+  --pink:#f472b6;--pink-dim:#f472b622;
+  --r:10px;--r2:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;line-height:1.6;overflow-x:hidden}
+.app{display:flex;min-height:100vh}
+.sidebar{width:260px;min-width:260px;background:var(--bg2);border-right:1px solid var(--border2);position:fixed;top:0;left:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;z-index:200}
+.content{margin-left:260px;flex:1;min-height:100vh}
+.logo-area{padding:18px 18px 14px;border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#fff;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.logo-sub{font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.profile-strip{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--teal));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:#fff;flex-shrink:0}
+.profile-name{font-size:11px;color:var(--text)}
+.profile-role{font-size:9px;color:var(--muted);margin-top:1px}
+.xp-area{padding:10px 18px 14px;border-bottom:1px solid var(--border)}
+.xp-label{font-size:9px;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em}
+.xp-bar{height:3px;background:var(--border2);border-radius:2px;overflow:hidden}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--teal));border-radius:2px;transition:width .5s}
+.xp-stats{display:flex;gap:10px;margin-top:8px}
+.stat-pill{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 8px;text-align:center}
+.stat-pill .n{font-size:13px;font-weight:500;font-family:'Syne',sans-serif}
+.stat-pill .l{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.nav-scroll{flex:1;overflow-y:auto;padding:6px 0}
+.nav-section-hdr{padding:10px 18px 4px;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.nav-item{display:flex;align-items:center;gap:8px;padding:6px 18px;font-size:10px;color:var(--muted2);cursor:pointer;transition:all .12s;border-left:2px solid transparent;line-height:1.4}
+.nav-item:hover{color:var(--text);background:var(--bg3)}
+.nav-item.active{color:#fff;background:var(--bg3);border-left-color:var(--accent)}
+.nav-item .ic{font-size:13px;width:16px;flex-shrink:0}
+.nav-item .cnt{margin-left:auto;font-size:8px;padding:1px 5px;border-radius:8px;background:var(--bg4);color:var(--muted)}
+.nav-item.active .cnt{background:var(--accent-dim);color:var(--accent)}
+.tag{font-size:7px;padding:1px 5px;border-radius:4px;border:1px solid;margin-left:auto}
+.tag-new{border-color:var(--green);color:var(--green)}
+.tag-gap{border-color:var(--red);color:var(--red)}
+.tag-key{border-color:var(--gold);color:var(--gold)}
+.tag-done{border-color:var(--teal);color:var(--teal)}
+/* Pages */
+.page{display:none;padding:28px 32px;max-width:1100px}
+.page.active{display:block}
+.page-title{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:#fff;letter-spacing:-.03em;line-height:1.2;margin-bottom:6px}
+.page-sub{font-size:11px;color:var(--muted2);line-height:1.7;margin-bottom:24px}
+.page-sub a{color:var(--accent);text-decoration:none}
+/* Cards */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r2);padding:18px;cursor:pointer;transition:border-color .15s}
+.card:hover{border-color:var(--border3)}
+.card-sm{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:14px}
+.metric{background:var(--bg3);border-radius:var(--r);padding:14px;text-align:center}
+.metric-n{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;line-height:1}
+.metric-l{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.metric-sub{font-size:10px;color:var(--muted2);margin-top:3px}
+/* Section headers */
+.section-hdr{display:flex;align-items:center;gap:10px;margin:20px 0 12px}
+.section-hdr h3{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#fff}
+.section-hdr .line{flex:1;height:1px;background:var(--border)}
+.badge{font-size:9px;padding:2px 8px;border-radius:10px}
+.badge-accent{background:var(--accent-dim);color:var(--accent)}
+.badge-gold{background:var(--gold-dim);color:var(--gold)}
+.badge-green{background:var(--green-dim);color:var(--green)}
+.badge-red{background:var(--red-dim);color:var(--red)}
+.badge-teal{background:var(--teal-dim);color:var(--teal)}
+.badge-pink{background:var(--pink-dim);color:var(--pink)}
+/* Hero card */
+.hero-card{background:linear-gradient(135deg,#0f0f22,#0a1520);border:1px solid var(--accent-dim);border-radius:var(--r2);padding:24px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(var(--accent-dim),transparent);pointer-events:none}
+.hero-label{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.hero-title{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:6px}
+.hero-desc{font-size:11px;color:var(--muted2);line-height:1.7;margin-bottom:14px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.hero-pill{font-size:9px;padding:3px 10px;border-radius:10px;border:1px solid var(--border2);color:var(--muted2)}
+/* Buttons */
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn{font-size:10px;padding:8px 16px;border-radius:8px;border:1px solid;cursor:pointer;font-family:'DM Mono',monospace;transition:all .15s;line-height:1}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-primary:hover{opacity:.85}
+.btn-success{background:var(--green);border-color:var(--green);color:#000}
+.btn-success:hover{opacity:.85}
+.btn-outline{background:transparent;border-color:var(--border3);color:var(--muted2)}
+.btn-outline:hover{border-color:var(--text);color:var(--text)}
+.btn-gold{background:transparent;border-color:var(--gold-dim);color:var(--gold)}
+.btn-gold:hover{background:var(--gold-dim)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+/* Concept content */
+.concept-body{font-size:11px;color:var(--muted2);line-height:1.85}
+.concept-body h4{font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--text);margin:16px 0 6px}
+.concept-body p{margin-bottom:10px}
+.concept-body ul{margin:6px 0 10px 16px}
+.concept-body li{margin-bottom:5px}
+.concept-body a{color:var(--accent);text-decoration:none}
+.concept-body a:hover{text-decoration:underline}
+.concept-body code{background:var(--bg3);padding:1px 6px;border-radius:4px;font-size:10px;color:var(--teal)}
+.callout{background:var(--bg3);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:11px;color:var(--muted2);line-height:1.7}
+.callout.gold{border-color:var(--gold)}
+.callout.green{border-color:var(--green)}
+.callout.red{border-color:var(--red)}
+.callout strong{color:var(--text)}
+.tradeoffs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.pros{background:#0d1f14;border:1px solid var(--green-dim);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--muted2);line-height:1.6}
+.cons{background:#1a0e0e;border:1px solid var(--red-dim);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--muted2);line-height:1.6}
+.pros strong{color:var(--green);display:block;margin-bottom:5px}
+.cons strong{color:var(--red);display:block;margin-bottom:5px}
+/* Phase blocks (curriculum) */
+.phase-block{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r2);margin-bottom:12px;overflow:hidden}
+.phase-hdr{padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .12s;user-select:none}
+.phase-hdr:hover{background:var(--bg3)}
+.phase-num{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--accent);opacity:.4;width:24px;flex-shrink:0}
+.phase-title{font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:#fff;flex:1}
+.phase-duration{font-size:9px;color:var(--muted);padding:2px 8px;border-radius:8px;background:var(--bg4);white-space:nowrap}
+.phase-arrow{font-size:10px;color:var(--muted);transition:transform .2s}
+.phase-arrow.open{transform:rotate(90deg)}
+.phase-body{padding:0 18px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
+.phase-body.open{max-height:2000px;padding:12px 18px 16px}
+/* Topic rows */
+.topic-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;margin-bottom:3px;border:1px solid transparent;transition:all .15s;cursor:pointer}
+.topic-row:hover{border-color:var(--border2);background:var(--bg3)}
+.topic-row.completed{opacity:.6}
+.topic-row.current{border-color:var(--accent-dim);background:var(--accent-dim)}
+.topic-check{width:18px;height:18px;border-radius:5px;border:1px solid var(--border3);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all .2s;cursor:pointer}
+.topic-check:hover{border-color:var(--accent)}
+.topic-check.done{background:var(--green);border-color:var(--green);color:#000}
+.topic-check.today{background:var(--accent);border-color:var(--accent);color:#fff}
+.topic-check.iitm{background:var(--teal);border-color:var(--teal);color:#000}
+.topic-name{font-size:11px;color:var(--text);flex:1}
+.topic-name.completed{text-decoration:line-through;color:var(--muted)}
+.topic-tags{display:flex;gap:4px;flex-shrink:0}
+.ttag{font-size:8px;padding:1px 6px;border-radius:4px;border:1px solid;white-space:nowrap}
+.ttag-faang{border-color:#ff6b6b44;color:var(--red)}
+.ttag-iitm{border-color:#2dd4bf44;color:var(--teal)}
+.ttag-arch{border-color:#7c6fff44;color:var(--accent)}
+.ttag-startup{border-color:#3dd68c44;color:var(--green)}
+.ttag-mba{border-color:#e8b84b44;color:var(--gold)}
+.topic-ref{font-size:9px;color:var(--accent);text-decoration:none;flex-shrink:0;opacity:.7}
+.topic-ref:hover{opacity:1}
+/* Tabs */
+.tabs{display:flex;gap:2px;background:var(--bg3);border-radius:10px;padding:3px;margin-bottom:18px;width:fit-content}
+.tab{padding:6px 14px;border-radius:8px;font-size:10px;cursor:pointer;color:var(--muted);transition:all .15s;user-select:none}
+.tab.active{background:var(--bg2);color:var(--text)}
+/* FAANG Qs */
+.q-block{background:var(--bg3);border-radius:var(--r);padding:14px;margin-bottom:8px;border-left:3px solid var(--border2)}
+.q-block.hard{border-color:var(--red)}
+.q-block.med{border-color:var(--gold)}
+.q-block.easy{border-color:var(--green)}
+.q-title{font-size:11px;color:var(--text);margin-bottom:6px;line-height:1.5}
+.q-meta{display:flex;gap:8px;align-items:center}
+.qlvl{font-size:8px;padding:2px 7px;border-radius:6px}
+.qlvl.hard{background:var(--red-dim);color:var(--red)}
+.qlvl.med{background:var(--gold-dim);color:var(--gold)}
+.qlvl.easy{background:var(--green-dim);color:var(--green)}
+.q-company{font-size:9px;color:var(--muted)}
+.q-toggle{font-size:9px;color:var(--accent);cursor:pointer;margin-left:auto;user-select:none}
+.q-answer{font-size:10px;color:var(--muted2);margin-top:10px;display:none;line-height:1.75;border-top:1px solid var(--border);padding-top:10px}
+.q-answer.open{display:block}
+.q-answer a{color:var(--accent);text-decoration:none}
+/* Resources */
+.res-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;border:1px solid var(--border);margin-bottom:7px;transition:border-color .15s}
+.res-row:hover{border-color:var(--border2)}
+.res-icon{font-size:15px;width:20px;flex-shrink:0}
+.res-info{flex:1}
+.res-title{font-size:11px;color:var(--text)}
+.res-meta{font-size:9px;color:var(--muted);margin-top:2px}
+.res-link{font-size:9px;color:var(--accent);text-decoration:none;flex-shrink:0}
+.res-link:hover{text-decoration:underline}
+/* Progress notification */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg2);border:1px solid var(--green);border-radius:12px;padding:12px 18px;font-size:11px;color:var(--text);z-index:999;transform:translateY(80px);opacity:0;transition:all .3s;max-width:280px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-title{font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--green);margin-bottom:3px}
+/* Gap analysis */
+.gap-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:var(--r);border:1px solid var(--border);margin-bottom:8px;cursor:pointer;transition:border-color .15s}
+.gap-row:hover{border-color:var(--border3)}
+.gap-icon{font-size:16px;width:22px;flex-shrink:0}
+.gap-info{flex:1}
+.gap-title{font-size:11px;color:var(--text)}
+.gap-desc{font-size:10px;color:var(--muted);margin-top:2px}
+.gap-level{width:110px;flex-shrink:0}
+.gap-bar{height:5px;background:var(--border2);border-radius:3px;overflow:hidden;margin-bottom:3px}
+.gap-fill{height:100%;border-radius:3px}
+.gap-pct{font-size:9px;color:var(--muted);text-align:right}
+.gap-btn{font-size:9px;padding:4px 10px;border-radius:6px;border:1px solid var(--border2);color:var(--muted2);white-space:nowrap;cursor:pointer;background:transparent;transition:all .12s;font-family:'DM Mono',monospace}
+.gap-btn:hover{border-color:var(--accent);color:var(--accent)}
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="logo-area">
+    <div class="logo"><div class="logo-dot"></div>Architect's Blueprint</div>
+    <div class="logo-sub">Mastery Platform · v2.0</div>
+  </div>
+  <div class="profile-strip">
+    <div class="avatar">SS</div>
+    <div><div class="profile-name">Sriram Sundararajan</div><div class="profile-role">Sr Manager → Enterprise Architect</div></div>
+  </div>
+  <div class="xp-area">
+    <div class="xp-label"><span>Journey Progress</span><span id="xp-day" style="color:var(--accent)">0 / 365 days</span></div>
+    <div class="xp-bar"><div class="xp-fill" id="xp-bar" style="width:0%"></div></div>
+    <div class="xp-stats">
+      <div class="stat-pill"><div class="n" id="stat-done" style="color:var(--accent)">0</div><div class="l">Done</div></div>
+      <div class="stat-pill"><div class="n" style="color:var(--gold)">1</div><div class="l">Today</div></div>
+      <div class="stat-pill"><div class="n" id="stat-left" style="color:var(--muted2)">142</div><div class="l">Left</div></div>
+    </div>
+  </div>
+  <nav class="nav-scroll">
+    <div class="nav-section-hdr">Overview</div>
+    <div class="nav-item active" data-page="home"><span class="ic">⌂</span>Dashboard</div>
+    <div class="nav-item" data-page="gaps"><span class="ic">◈</span>Gap Analysis<span class="tag tag-gap">Critical</span></div>
+    <div class="nav-item" data-page="today"><span class="ic">◉</span>Today's Concept<span class="tag tag-new">New</span></div>
+
+    <div class="nav-section-hdr">System Design (FAANG)</div>
+    <div class="nav-item" data-page="sys1"><span class="ic">⬡</span>Fundamentals<span class="cnt">18</span></div>
+    <div class="nav-item" data-page="sys2"><span class="ic">⬡</span>Distributed Systems<span class="cnt">14</span></div>
+    <div class="nav-item" data-page="sys3"><span class="ic">⬡</span>Data & Storage<span class="cnt">16</span></div>
+    <div class="nav-item" data-page="faang"><span class="ic">★</span>FAANG Question Bank<span class="tag tag-key">Key</span></div>
+
+    <div class="nav-section-hdr">Enterprise Architect</div>
+    <div class="nav-item" data-page="ea1"><span class="ic">▦</span>EA Frameworks (TOGAF)<span class="tag tag-gap">Gap</span></div>
+    <div class="nav-item" data-page="ea2"><span class="ic">▦</span>Cloud Architecture<span class="cnt">20</span></div>
+    <div class="nav-item" data-page="ea3"><span class="ic">▦</span>Digital Transformation<span class="tag tag-gap">Gap</span></div>
+
+    <div class="nav-section-hdr">AI Transformation Leader</div>
+    <div class="nav-item" data-page="ai1"><span class="ic">◍</span>IIT Madras: ADSML (70%)<span class="tag tag-done">In Progress</span></div>
+    <div class="nav-item" data-page="ai2"><span class="ic">◍</span>LLMs & GenAI Architecture<span class="cnt">8</span></div>
+    <div class="nav-item" data-page="ai3"><span class="ic">◍</span>MLOps & AI Infrastructure<span class="tag tag-gap">Gap</span></div>
+
+    <div class="nav-section-hdr">Startup Founder Track</div>
+    <div class="nav-item" data-page="st1"><span class="ic">◆</span>Product & Strategy<span class="tag tag-gap">Gap</span></div>
+    <div class="nav-item" data-page="st2"><span class="ic">◆</span>Business Models & Finance<span class="tag tag-gap">Gap</span></div>
+    <div class="nav-item" data-page="st3"><span class="ic">◆</span>Fundraising & VC<span class="tag tag-gap">Gap</span></div>
+
+    <div class="nav-section-hdr">MBA / Leadership</div>
+    <div class="nav-item" data-page="mba1"><span class="ic">◎</span>Strategic Management<span class="tag tag-gap">Gap</span></div>
+    <div class="nav-item" data-page="mba2"><span class="ic">◎</span>Financial Acumen<span class="tag tag-gap">Gap</span></div>
+    <div class="nav-item" data-page="mba3"><span class="ic">◎</span>Leadership & Org Behavior</div>
+
+    <div class="nav-section-hdr">Communication & Influence</div>
+    <div class="nav-item" data-page="pres"><span class="ic">🎙</span>Presentation Mastery<span class="tag tag-gap">Gap</span></div>
+    <div class="nav-item" data-page="vocab"><span class="ic">📚</span>Vocabulary & Exec Language<span class="tag tag-gap">Gap</span></div>
+    <div class="nav-item" data-page="assert"><span class="ic">⚡</span>Assertiveness & Influence<span class="tag tag-gap">Gap</span></div>
+    <div class="nav-item" data-page="sales"><span class="ic">💼</span>Sales & Consulting<span class="tag tag-gap">Gap</span></div>
+  </nav>
+</aside>
+
+<main class="content">
+
+<!-- ══ DASHBOARD ══ -->
+<div id="page-home" class="page active">
+  <div class="page-title">Good morning, Sriram 👋</div>
+  <div class="page-sub">Senior Manager → Enterprise Architect → AI Leader → Startup Founder. One concept a day. 365 days. Updated: IIT Madras ADSML (70% complete) now reflected in your AI track.</div>
+
+  <div class="hero-card">
+    <div class="hero-label">▸ Day 1 of 365 · Today's Concept</div>
+    <div class="hero-title">CAP Theorem & Distributed Consistency</div>
+    <div class="hero-desc">The foundational theorem every solution architect must internalize — core to every FAANG system design interview and every distributed system you'll ever design.</div>
+    <div class="hero-pills">
+      <span class="hero-pill">⏱ 45 min</span>
+      <span class="hero-pill">🎯 FAANG Core</span>
+      <span class="hero-pill">Track: System Design</span>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="showPage('today')">▸ Start Today's Concept</button>
+      <button class="btn btn-outline" onclick="showPage('gaps')">◈ View Gap Analysis</button>
+      <button class="btn btn-gold" onclick="showPage('ai1')">◍ IIT Madras Progress</button>
+    </div>
+  </div>
+
+  <div class="grid4">
+    <div class="metric"><div class="metric-n" style="color:var(--red)" id="d-gaps">23</div><div class="metric-l">Critical Gaps</div><div class="metric-sub">vs Enterprise Architect</div></div>
+    <div class="metric"><div class="metric-n" style="color:var(--teal)">70%</div><div class="metric-l">IIT Madras Done</div><div class="metric-sub">ADSML Course</div></div>
+    <div class="metric"><div class="metric-n" style="color:var(--gold)">142</div><div class="metric-l">Total Concepts</div><div class="metric-sub">8 tracks</div></div>
+    <div class="metric"><div class="metric-n" style="color:var(--green)" id="d-done">0</div><div class="metric-l">Completed</div><div class="metric-sub">in this platform</div></div>
+  </div>
+
+  <div class="section-hdr"><h3>This Week</h3><div class="line"></div><span class="badge badge-accent">7 Concepts</span></div>
+  <div class="card" style="cursor:default">
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px">
+      <div style="text-align:center"><div style="font-size:8px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Mon</div><div style="background:var(--accent);border-radius:6px;padding:8px 4px;font-size:9px;color:#fff;line-height:1.4">CAP<br>Theorem</div><div style="font-size:8px;color:var(--accent);margin-top:3px">Today</div></div>
+      <div style="text-align:center"><div style="font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Tue</div><div style="background:var(--bg3);border-radius:6px;padding:8px 4px;font-size:9px;color:var(--muted2);line-height:1.4">Consistent<br>Hashing</div></div>
+      <div style="text-align:center"><div style="font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Wed</div><div style="background:var(--bg3);border-radius:6px;padding:8px 4px;font-size:9px;color:var(--muted2);line-height:1.4">DB<br>Sharding</div></div>
+      <div style="text-align:center"><div style="font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Thu</div><div style="background:var(--bg3);border-radius:6px;padding:8px 4px;font-size:9px;color:var(--muted2);line-height:1.4">Kafka<br>Deep Dive</div></div>
+      <div style="text-align:center"><div style="font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Fri</div><div style="background:var(--bg3);border-radius:6px;padding:8px 4px;font-size:9px;color:var(--muted2);line-height:1.4">TOGAF<br>Intro</div></div>
+      <div style="text-align:center"><div style="font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Sat</div><div style="background:var(--bg3);border-radius:6px;padding:8px 4px;font-size:9px;color:var(--muted2);line-height:1.4">Business<br>Models</div></div>
+      <div style="text-align:center"><div style="font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Sun</div><div style="background:var(--bg3);border-radius:6px;padding:8px 4px;font-size:9px;color:var(--muted2);line-height:1.4">Review<br>+ FAANG</div></div>
+    </div>
+  </div>
+
+  <div class="section-hdr"><h3>IIT Madras ADSML — What You've Covered</h3><div class="line"></div><span class="badge badge-teal">70% Complete</span></div>
+  <div class="grid3">
+    <div class="card-sm"><div style="font-size:9px;color:var(--teal);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">✓ Covered by IITM</div><div style="font-size:11px;color:var(--text);line-height:2">Data Science Foundations<br>Statistical Methods & Probability<br>ML Algorithms (Supervised/Unsupervised)<br>Deep Learning Fundamentals<br>NLP Basics<br>Reinforcement Learning (RBCDSAI)</div></div>
+    <div class="card-sm"><div style="font-size:9px;color:var(--gold);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">⚡ Likely in remaining 30%</div><div style="font-size:11px;color:var(--text);line-height:2">Advanced Neural Architectures<br>Transformers & Attention<br>Computer Vision (CNNs)<br>Capstone Projects<br>Industry Use Cases<br>Healthcare / Bio Analytics</div></div>
+    <div class="card-sm"><div style="font-size:9px;color:var(--red);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">🔴 Still Gap (post IITM)</div><div style="font-size:11px;color:var(--text);line-height:2">LLMOps & Prompt Engineering<br>RAG Architecture & Vector DBs<br>MLOps Pipelines (Kubeflow/MLflow)<br>AI Product Strategy<br>Responsible AI & Governance<br>Multi-modal & Agent Frameworks</div></div>
+  </div>
+</div>
+
+<!-- ══ TODAY'S CONCEPT ══ -->
+<div id="page-today" class="page">
+  <div class="page-title">Day 1 · CAP Theorem</div>
+  <div class="page-sub">System Design Fundamentals · FAANG Core · ~45 min · <span id="concept-status" style="color:var(--green)">Not started</span></div>
+
+  <div class="tabs" id="today-tabs">
+    <div class="tab active" data-tab-group="today" data-tab-target="tc-learn">📖 Learn</div>
+    <div class="tab" data-tab-group="today" data-tab-target="tc-arch">🏗️ Architect Lens</div>
+    <div class="tab" data-tab-group="today" data-tab-target="tc-faang">★ FAANG Qs</div>
+    <div class="tab" data-tab-group="today" data-tab-target="tc-ref">🔗 Resources</div>
+  </div>
+
+  <div id="tc-learn" class="concept-body tab-panel" data-group="today">
+    <div class="callout"><strong>Why this matters for you, Sriram:</strong> You've built distributed automation bots, multi-cloud ESG pipelines (Walmart, Arcelor Mittal), and invoice AI (ICE NYSE). All distributed systems. CAP is the mental model explaining why these systems behave inconsistently under failure — and every FAANG system design interview starts here.</div>
+    <h4>The Three Properties</h4>
+    <p>CAP theorem (Eric Brewer, 2000) states a distributed data store can only guarantee <strong>2 of 3</strong> simultaneously:</p>
+    <ul>
+      <li><strong>C — Consistency:</strong> Every read gets the latest write or an error. No stale data.</li>
+      <li><strong>A — Availability:</strong> Every request gets a response (may be stale). Never an error.</li>
+      <li><strong>P — Partition Tolerance:</strong> System operates even when network messages drop between nodes.</li>
+    </ul>
+    <div class="callout red"><strong>Critical insight:</strong> P is non-negotiable in any real distributed system — networks WILL fail (AWS AZ outages, VPN drops). So the real choice is always <strong>CP</strong> or <strong>AP</strong> — never CA.</div>
+    <h4>CP vs AP — The Real Decision</h4>
+    <div class="tradeoffs">
+      <div class="pros"><strong>Choose CP when...</strong>Banking ledgers · Payment processing · Inventory counts · Distributed locks · Config management · "Never show wrong balance"<br><br>Examples: HBase, Zookeeper, etcd, MongoDB (strong reads)</div>
+      <div class="cons"><strong>Choose AP when...</strong>Social media feeds · Shopping carts · DNS · User profiles · Recommendation engines · "Always respond, even if stale"<br><br>Examples: Cassandra, DynamoDB, CouchDB</div>
+    </div>
+    <h4>PACELC — The Extension That Matters More</h4>
+    <p>Daniel Abadi's PACELC goes beyond CAP: even when there's <strong>no partition (E)</strong>, you choose between <strong>Latency (L)</strong> vs <strong>Consistency (C)</strong>.</p>
+    <ul>
+      <li><strong>DynamoDB</strong> = PA/EL — available during partitions, low latency always</li>
+      <li><strong>Cassandra</strong> = PA/EL — same, tunable consistency</li>
+      <li><strong>CockroachDB</strong> = PC/EC — consistent always, pays latency cost</li>
+    </ul>
+    <div class="callout green"><strong>Architect's takeaway:</strong> First question for any component: "Is it worse to serve stale data, or to refuse to serve?" That decides CP vs AP. This applies to your ESG reporting (AP — stale data acceptable) vs invoice processing (CP — double-processing = disaster).</div>
+  </div>
+
+  <div id="tc-arch" class="concept-body tab-panel" data-group="today" style="display:none">
+    <h4>Architect Decision Framework — 3 Questions</h4>
+    <div class="callout"><strong>Before designing any distributed component, ask:</strong><br>1. Can my users tolerate stale data? → AP vs CP<br>2. Can my users tolerate downtime? → partition behaviour<br>3. How stale is "too stale"? → sets your replication lag SLA</div>
+    <h4>Applied to Your Past Projects</h4>
+    <ul>
+      <li><strong>Walmart GCP + ESG Reporting:</strong> AP — showing last week's carbon data vs this week's is fine. Prioritise availability.</li>
+      <li><strong>ICE NYSE Invoice Processing (5K docs):</strong> CP — double-processing a $50K invoice is catastrophic. Use strong consistency, accept brief unavailability.</li>
+      <li><strong>Apollo Azure Dashboard:</strong> AP for dashboard reads (eventual), CP for write confirmations.</li>
+    </ul>
+    <h4>Quorum Reads & Writes</h4>
+    <p>Cassandra lets you tune: <code>W + R > N</code> guarantees consistency. With N=3 replicas: write to 2 (W=2), read from 2 (R=2) — always overlap at least 1 node with latest data. Set W=1, R=1 for max availability with weaker consistency.</p>
+    <h4>Interview Framing</h4>
+    <p>When asked "Design a payment system" — say immediately: "Payments are CP — I'll sacrifice availability over consistency. But the analytics dashboard and notification emails can be AP — eventual consistency is fine there." This signals senior-level thinking in the first 60 seconds.</p>
+  </div>
+
+  <div id="tc-faang" class="concept-body tab-panel" data-group="today" style="display:none">
+    <div class="q-block hard">
+      <div class="q-title">Design a globally distributed key-value store like DynamoDB. How do you handle CAP trade-offs?</div>
+      <div class="q-meta"><span class="qlvl hard">Hard</span><span class="q-company">Amazon · Google · Meta</span><div class="q-toggle" onclick="toggleQ(this)">Show Answer ▼</div></div>
+      <div class="q-answer">Consistent hashing for key distribution, virtual nodes for uniform spread, quorum reads/writes (R+W>N), vector clocks for conflict detection, LWW for resolution, Merkle trees for anti-entropy, gossip protocol for membership. AP system, eventual consistency by default, strong opt-in. <a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf" target="_blank">Read: Amazon Dynamo Paper →</a></div>
+    </div>
+    <div class="q-block hard">
+      <div class="q-title">User writes data, immediately reads it back and sees stale data. How do you diagnose and fix?</div>
+      <div class="q-meta"><span class="qlvl hard">Hard</span><span class="q-company">Netflix · Uber · Stripe</span><div class="q-toggle" onclick="toggleQ(this)">Show Answer ▼</div></div>
+      <div class="q-answer">Diagnose: replication lag (SHOW REPLICA STATUS), async vs sync replication config, read routing hitting replica before sync. Fix: (1) read-your-writes — route reads to primary for 60s post-write, (2) increase W quorum, (3) sync replication for critical paths, (4) sticky sessions for monotonic reads.</div>
+    </div>
+    <div class="q-block med">
+      <div class="q-title">How do you design a system needing different consistency levels for different parts? (e.g. banking + notifications)</div>
+      <div class="q-meta"><span class="qlvl med">Medium</span><span class="q-company">Razorpay · Goldman · JPMorgan</span><div class="q-toggle" onclick="toggleQ(this)">Show Answer ▼</div></div>
+      <div class="q-answer">Tiered: (1) Ledger — CP, PostgreSQL + sync replication, serializable isolation. (2) Balance cache — eventual, Redis 5s TTL. (3) Notifications — AP, Kafka at-least-once + idempotent consumer. (4) Fraud signals — stream processing, sub-second eventual convergence.</div>
+    </div>
+  </div>
+
+  <div id="tc-ref" class="concept-body tab-panel" data-group="today" style="display:none">
+    <div class="res-row"><div class="res-icon">📄</div><div class="res-info"><div class="res-title">Dynamo: Amazon's Highly Available Key-Value Store</div><div class="res-meta">Werner Vogels · SOSP 2007 · Foundational AP systems paper</div></div><a class="res-link" href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf" target="_blank">Read →</a></div>
+    <div class="res-row"><div class="res-icon">📄</div><div class="res-info"><div class="res-title">PACELC: An Updated Perspective on CAP</div><div class="res-meta">Daniel Abadi · ACM Queue 2012</div></div><a class="res-link" href="https://dl.acm.org/doi/10.1145/2408776.2408794" target="_blank">Read →</a></div>
+    <div class="res-row"><div class="res-icon">📚</div><div class="res-info"><div class="res-title">Designing Data-Intensive Applications — Chapter 9</div><div class="res-meta">Martin Kleppmann · O'Reilly · The bible for architects</div></div><a class="res-link" href="https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/" target="_blank">View →</a></div>
+    <div class="res-row"><div class="res-icon">🎓</div><div class="res-info"><div class="res-title">MIT 6.824: Distributed Systems (Free)</div><div class="res-meta">Raft, Paxos, Spanner, GFS — IIT Madras ADSML complements this well</div></div><a class="res-link" href="https://pdos.csail.mit.edu/6.824/" target="_blank">Course →</a></div>
+    <div class="res-row"><div class="res-icon">🎓</div><div class="res-info"><div class="res-title">Grokking the System Design Interview</div><div class="res-meta">Educative.io · Most referenced FAANG prep resource</div></div><a class="res-link" href="https://www.educative.io/courses/grokking-the-system-design-interview" target="_blank">Course →</a></div>
+  </div>
+
+  <div class="btn-row" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+    <button class="btn btn-success" id="mark-complete-btn" onclick="markComplete()">✓ Mark Complete (+50 XP)</button>
+    <button class="btn btn-outline" id="prev-btn" onclick="navigate(-1)" disabled>← Previous</button>
+    <button class="btn btn-outline" id="next-btn" onclick="navigate(1)">Next: Consistent Hashing →</button>
+  </div>
+</div>
+
+<!-- ══ SYSTEM DESIGN 1 ══ -->
+<div id="page-sys1" class="page">
+  <div class="page-title">System Design Fundamentals</div>
+  <div class="page-sub">18 core concepts · Foundation for all FAANG interviews · ~25 days · Click any topic to open it · Click ✓ to mark done</div>
+
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">1</div><div class="phase-title">Scalability & Load Fundamentals</div><div class="phase-duration">Days 1–6</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body open">
+      <div class="topic-row current" data-concept="cap" onclick="showPage('today')"><div class="topic-check today" onclick="event.stopPropagation();markTopicDone(this,'cap')">▸</div><div class="topic-name">CAP Theorem & PACELC</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://pdos.csail.mit.edu/6.824/" target="_blank" onclick="event.stopPropagation()">MIT 6.824</a></div>
+      <div class="topic-row" data-concept="hashing"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'hashing')"></div><div class="topic-name">Consistent Hashing & Virtual Nodes</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span></div><a class="topic-ref" href="https://www.educative.io/courses/grokking-the-system-design-interview" target="_blank" onclick="event.stopPropagation()">Educative</a></div>
+      <div class="topic-row" data-concept="lb"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'lb')"></div><div class="topic-name">Load Balancing (L4, L7, Algorithms)</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://aws.amazon.com/elasticloadbalancing/" target="_blank" onclick="event.stopPropagation()">AWS ELB</a></div>
+      <div class="topic-row" data-concept="rl"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'rl')"></div><div class="topic-name">Rate Limiting (Token Bucket, Sliding Window)</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span></div><a class="topic-ref" href="https://stripe.com/blog/rate-limiters" target="_blank" onclick="event.stopPropagation()">Stripe Blog</a></div>
+      <div class="topic-row" data-concept="cache"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'cache')"></div><div class="topic-name">Caching Strategies (Redis, Eviction, Invalidation)</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://redis.io/docs/" target="_blank" onclick="event.stopPropagation()">Redis Docs</a></div>
+      <div class="topic-row" data-concept="cdn"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'cdn')"></div><div class="topic-name">CDN Architecture & Edge Computing</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://developers.cloudflare.com/workers/" target="_blank" onclick="event.stopPropagation()">CF Workers</a></div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">2</div><div class="phase-title">Data & Storage Patterns</div><div class="phase-duration">Days 7–12</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="topic-row" data-concept="sqlnosql"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'sqlnosql')"></div><div class="topic-name">SQL vs NoSQL — Decision Framework</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span><span class="ttag ttag-iitm">IIT-M</span></div><a class="topic-ref" href="https://www.datastax.com/blog/sql-vs-nosql" target="_blank" onclick="event.stopPropagation()">DataStax</a></div>
+      <div class="topic-row" data-concept="shard"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'shard')"></div><div class="topic-name">Database Sharding & Partitioning</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span></div><a class="topic-ref" href="https://www.postgresql.org/docs/current/ddl-partitioning.html" target="_blank" onclick="event.stopPropagation()">PG Docs</a></div>
+      <div class="topic-row" data-concept="repl"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'repl')"></div><div class="topic-name">Database Replication & Consistency Levels</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span></div><a class="topic-ref" href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf" target="_blank" onclick="event.stopPropagation()">Dynamo</a></div>
+      <div class="topic-row" data-concept="idx"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'idx')"></div><div class="topic-name">Indexes (B-Tree, LSM, Bloom Filters)</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span></div><a class="topic-ref" href="https://use-the-index-luke.com/" target="_blank" onclick="event.stopPropagation()">Index Luke</a></div>
+      <div class="topic-row" data-concept="search"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'search')"></div><div class="topic-name">Search Architecture (Elasticsearch, Inverted Index)</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span></div><a class="topic-ref" href="https://www.elastic.co/guide" target="_blank" onclick="event.stopPropagation()">Elastic Docs</a></div>
+      <div class="topic-row" data-concept="ts"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'ts')"></div><div class="topic-name">Time Series & TSDB Design</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://www.influxdata.com/time-series-database/" target="_blank" onclick="event.stopPropagation()">InfluxDB</a></div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">3</div><div class="phase-title">Async & Event-Driven Patterns</div><div class="phase-duration">Days 13–18</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="topic-row" data-concept="mq"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'mq')"></div><div class="topic-name">Message Queues (SQS, RabbitMQ) vs Kafka</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://kafka.apache.org/documentation/" target="_blank" onclick="event.stopPropagation()">Kafka Docs</a></div>
+      <div class="topic-row" data-concept="es"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'es')"></div><div class="topic-name">Event Sourcing & CQRS Pattern</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://martinfowler.com/eaaDev/EventSourcing.html" target="_blank" onclick="event.stopPropagation()">Fowler</a></div>
+      <div class="topic-row" data-concept="saga"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'saga')"></div><div class="topic-name">Saga Pattern (Choreography & Orchestration)</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://microservices.io/patterns/data/saga.html" target="_blank" onclick="event.stopPropagation()">microservices.io</a></div>
+      <div class="topic-row" data-concept="api"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'api')"></div><div class="topic-name">API Design (REST, GraphQL, gRPC)</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span></div><a class="topic-ref" href="https://grpc.io/docs/" target="_blank" onclick="event.stopPropagation()">gRPC Docs</a></div>
+      <div class="topic-row" data-concept="gw"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'gw')"></div><div class="topic-name">API Gateway & Service Mesh (Istio, Envoy)</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://istio.io/latest/docs/" target="_blank" onclick="event.stopPropagation()">Istio Docs</a></div>
+      <div class="topic-row" data-concept="cb"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'cb')"></div><div class="topic-name">Circuit Breaker & Resilience Patterns</div><div class="topic-tags"><span class="ttag ttag-faang">FAANG</span><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://martinfowler.com/bliki/CircuitBreaker.html" target="_blank" onclick="event.stopPropagation()">Fowler</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ IIT MADRAS AI TRACK ══ -->
+<div id="page-ai1" class="page">
+  <div class="page-title">IIT Madras ADSML — Your AI Foundation</div>
+  <div class="page-sub">You're 70% through the PG-Level Advanced Certification (IITM Pravartak + WSAI). This page maps what you've covered, what's left, and what to build on top of it to become a full AI Transformation Leader.</div>
+
+  <div class="hero-card" style="border-color:var(--teal-dim)">
+    <div class="hero-label" style="color:var(--teal)">▸ IIT Madras · TalentSprint · ADSML · 70% Complete</div>
+    <div class="hero-title">Massive headstart — now build the gap stack</div>
+    <div class="hero-desc">The IITM ADSML course covers Foundations of Data Science, ML Foundations, Real-world Applications, Deep Learning Fundamentals, and Industry Use Cases — delivered by RBCDSAI faculty including Prof. Balaraman Ravindran (RL pioneer) and Prof. Nandan Sudarsanam. Your 70% completion means you already have the theoretical bedrock that most architects completely lack.</div>
+    <div class="hero-pills">
+      <span class="hero-pill" style="border-color:var(--teal-dim);color:var(--teal)">250+ hrs live classes</span>
+      <span class="hero-pill" style="border-color:var(--teal-dim);color:var(--teal)">Capstone projects</span>
+      <span class="hero-pill" style="border-color:var(--teal-dim);color:var(--teal)">RBCDSAI faculty</span>
+    </div>
+  </div>
+
+  <div class="section-hdr"><h3>Covered by IIT Madras (mark done below)</h3><div class="line"></div><span class="badge badge-teal">Module 1–3 of 5</span></div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">1</div><div class="phase-title">Foundations of Data Science</div><div class="phase-duration">IITM Module 1 ✓</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body open">
+      <div class="topic-row" data-concept="iitm-linalg"><div class="topic-check iitm" onclick="event.stopPropagation();markTopicDone(this,'iitm-linalg')">◍</div><div class="topic-name">Linear Algebra for ML (vectors, matrices, eigenvalues)</div><div class="topic-tags"><span class="ttag ttag-iitm">IIT-M</span></div><a class="topic-ref" href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/" target="_blank" onclick="event.stopPropagation()">MIT OCW</a></div>
+      <div class="topic-row" data-concept="iitm-prob"><div class="topic-check iitm" onclick="event.stopPropagation();markTopicDone(this,'iitm-prob')">◍</div><div class="topic-name">Probability & Statistics (Bayesian, distributions)</div><div class="topic-tags"><span class="ttag ttag-iitm">IIT-M</span></div><a class="topic-ref" href="https://www.khanacademy.org/math/statistics-probability" target="_blank" onclick="event.stopPropagation()">Khan Academy</a></div>
+      <div class="topic-row" data-concept="iitm-opt"><div class="topic-check iitm" onclick="event.stopPropagation();markTopicDone(this,'iitm-opt')">◍</div><div class="topic-name">Optimization (Gradient Descent, Convex optimization)</div><div class="topic-tags"><span class="ttag ttag-iitm">IIT-M</span></div><a class="topic-ref" href="https://cs231n.github.io/optimization-1/" target="_blank" onclick="event.stopPropagation()">Stanford CS231n</a></div>
+      <div class="topic-row" data-concept="iitm-py"><div class="topic-check iitm" onclick="event.stopPropagation();markTopicDone(this,'iitm-py')">◍</div><div class="topic-name">Python for Data Science (NumPy, Pandas, Matplotlib)</div><div class="topic-tags"><span class="ttag ttag-iitm">IIT-M</span></div></div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">2</div><div class="phase-title">Machine Learning Foundations</div><div class="phase-duration">IITM Module 2 ✓</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="topic-row" data-concept="iitm-sup"><div class="topic-check iitm" onclick="event.stopPropagation();markTopicDone(this,'iitm-sup')">◍</div><div class="topic-name">Supervised Learning (Regression, SVM, Decision Trees, Ensembles)</div><div class="topic-tags"><span class="ttag ttag-iitm">IIT-M</span></div><a class="topic-ref" href="https://scikit-learn.org/stable/supervised_learning.html" target="_blank" onclick="event.stopPropagation()">sklearn</a></div>
+      <div class="topic-row" data-concept="iitm-unsup"><div class="topic-check iitm" onclick="event.stopPropagation();markTopicDone(this,'iitm-unsup')">◍</div><div class="topic-name">Unsupervised Learning (K-Means, PCA, DBSCAN)</div><div class="topic-tags"><span class="ttag ttag-iitm">IIT-M</span></div></div>
+      <div class="topic-row" data-concept="iitm-rl"><div class="topic-check iitm" onclick="event.stopPropagation();markTopicDone(this,'iitm-rl')">◍</div><div class="topic-name">Reinforcement Learning (Q-learning, Policy Gradient)</div><div class="topic-tags"><span class="ttag ttag-iitm">IIT-M</span></div><a class="topic-ref" href="https://spinningup.openai.com/en/latest/" target="_blank" onclick="event.stopPropagation()">OpenAI Spinning Up</a></div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">3</div><div class="phase-title">Deep Learning Fundamentals</div><div class="phase-duration">IITM Module 4 — In Progress</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="topic-row" data-concept="iitm-nn"><div class="topic-check iitm" onclick="event.stopPropagation();markTopicDone(this,'iitm-nn')">◍</div><div class="topic-name">Neural Networks & Backpropagation</div><div class="topic-tags"><span class="ttag ttag-iitm">IIT-M</span></div><a class="topic-ref" href="https://www.deeplearning.ai/" target="_blank" onclick="event.stopPropagation()">DeepLearning.AI</a></div>
+      <div class="topic-row" data-concept="iitm-cnn"><div class="topic-check iitm" onclick="event.stopPropagation();markTopicDone(this,'iitm-cnn')">◍</div><div class="topic-name">CNNs & Computer Vision</div><div class="topic-tags"><span class="ttag ttag-iitm">IIT-M</span></div><a class="topic-ref" href="https://cs231n.github.io/" target="_blank" onclick="event.stopPropagation()">Stanford CS231n</a></div>
+      <div class="topic-row" data-concept="iitm-nlp"><div class="topic-check iitm" onclick="event.stopPropagation();markTopicDone(this,'iitm-nlp')">◍</div><div class="topic-name">NLP Basics (Word2Vec, Seq2Seq, Attention)</div><div class="topic-tags"><span class="ttag ttag-iitm">IIT-M</span></div><a class="topic-ref" href="https://web.stanford.edu/class/cs224n/" target="_blank" onclick="event.stopPropagation()">Stanford CS224n</a></div>
+    </div>
+  </div>
+
+  <div class="section-hdr"><h3>What to Learn AFTER IIT Madras Completion</h3><div class="line"></div><span class="badge badge-red">Critical Gap</span></div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">4</div><div class="phase-title">LLMs, Transformers & GenAI Architecture</div><div class="phase-duration">Post-IITM · ~20 days</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="topic-row" data-concept="transformer"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'transformer')"></div><div class="topic-name">Transformer Architecture (Attention, BERT, GPT)</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://arxiv.org/abs/1706.03762" target="_blank" onclick="event.stopPropagation()">Attention Paper</a></div>
+      <div class="topic-row" data-concept="rag"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'rag')"></div><div class="topic-name">RAG Architecture & Vector Databases (Pinecone, Weaviate)</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://www.pinecone.io/learn/retrieval-augmented-generation/" target="_blank" onclick="event.stopPropagation()">Pinecone</a></div>
+      <div class="topic-row" data-concept="finetune"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'finetune')"></div><div class="topic-name">Fine-tuning, LoRA & PEFT</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://huggingface.co/docs/peft/index" target="_blank" onclick="event.stopPropagation()">HuggingFace</a></div>
+      <div class="topic-row" data-concept="agents"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'agents')"></div><div class="topic-name">AI Agent Frameworks (LangChain, LlamaIndex, AutoGen)</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span><span class="ttag ttag-startup">Startup</span></div><a class="topic-ref" href="https://python.langchain.com/docs/get_started" target="_blank" onclick="event.stopPropagation()">LangChain</a></div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">5</div><div class="phase-title">MLOps & AI Infrastructure</div><div class="phase-duration">Post-IITM · ~20 days</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="topic-row" data-concept="mlflow"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'mlflow')"></div><div class="topic-name">MLflow, Model Registry & Experiment Tracking</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://mlflow.org/docs/latest/index.html" target="_blank" onclick="event.stopPropagation()">MLflow</a></div>
+      <div class="topic-row" data-concept="kubeflow"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'kubeflow')"></div><div class="topic-name">Kubeflow & ML Pipelines on Kubernetes</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://www.kubeflow.org/docs/" target="_blank" onclick="event.stopPropagation()">Kubeflow</a></div>
+      <div class="topic-row" data-concept="feast"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'feast')"></div><div class="topic-name">Feature Stores (Feast, Tecton)</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://docs.feast.dev/" target="_blank" onclick="event.stopPropagation()">Feast Docs</a></div>
+      <div class="topic-row" data-concept="monitor"><div class="topic-check" onclick="event.stopPropagation();markTopicDone(this,'monitor')"></div><div class="topic-name">Model Monitoring, Drift Detection & Retraining</div><div class="topic-tags"><span class="ttag ttag-arch">Arch</span></div><a class="topic-ref" href="https://evidentlyai.com/" target="_blank" onclick="event.stopPropagation()">EvidentlyAI</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GAP ANALYSIS ══ -->
+<div id="page-gaps" class="page">
+  <div class="page-title">Gap Analysis</div>
+  <div class="page-sub">Benchmarked against: Enterprise Architect · AI Transformation Leader · Startup Founder (Amazon/Facebook scale). Updated with your IIT Madras ADSML (70%) progress.</div>
+  <div class="grid4" style="margin-bottom:20px">
+    <div class="metric"><div class="metric-n" style="color:var(--red)">19</div><div class="metric-l">Critical Gaps</div><div class="metric-sub">Down from 23 (IITM credit)</div></div>
+    <div class="metric"><div class="metric-n" style="color:var(--teal)">70%</div><div class="metric-l">AI Foundation</div><div class="metric-sub">IIT Madras ADSML</div></div>
+    <div class="metric"><div class="metric-n" style="color:var(--green)">58%</div><div class="metric-l">Overall Readiness</div><div class="metric-sub">Up from 52%</div></div>
+    <div class="metric"><div class="metric-n" style="color:var(--gold)">365</div><div class="metric-l">Day Journey</div><div class="metric-sub">1 concept/day</div></div>
+  </div>
+  <div class="section-hdr"><h3>Critical Gaps — Still Open</h3><div class="line"></div><span class="badge badge-red">Must Close</span></div>
+  <div class="gap-row" onclick="showPage('ea1')"><div class="gap-icon">🏗️</div><div class="gap-info"><div class="gap-title">TOGAF / Enterprise Architecture Frameworks</div><div class="gap-desc">No TOGAF, Zachman, or formal EA methodology. Critical for EA role.</div></div><div class="gap-level"><div class="gap-bar"><div class="gap-fill" style="width:5%;background:var(--red)"></div></div><div class="gap-pct">5%</div></div><button class="gap-btn">Learn →</button></div>
+  <div class="gap-row" onclick="showPage('ai3')"><div class="gap-icon">⚙️</div><div class="gap-info"><div class="gap-title">MLOps & AI Infrastructure (post IIT Madras)</div><div class="gap-desc">IITM covers theory; MLflow, Kubeflow, Feature Stores, LLMOps are gaps.</div></div><div class="gap-level"><div class="gap-bar"><div class="gap-fill" style="width:20%;background:var(--red)"></div></div><div class="gap-pct">20%</div></div><button class="gap-btn">Learn →</button></div>
+  <div class="gap-row" onclick="showPage('st2')"><div class="gap-icon">💰</div><div class="gap-info"><div class="gap-title">Financial Acumen (P&L, Unit Economics, Cap Table)</div><div class="gap-desc">Zero financial management background. Founders must own P&L.</div></div><div class="gap-level"><div class="gap-bar"><div class="gap-fill" style="width:5%;background:var(--red)"></div></div><div class="gap-pct">5%</div></div><button class="gap-btn">Learn →</button></div>
+  <div class="gap-row" onclick="showPage('st3')"><div class="gap-icon">🚀</div><div class="gap-info"><div class="gap-title">Fundraising, VC Dynamics & Term Sheets</div><div class="gap-desc">Zero exposure. Pre-seed to Series A mechanics, dilution, investor relations.</div></div><div class="gap-level"><div class="gap-bar"><div class="gap-fill" style="width:2%;background:var(--red)"></div></div><div class="gap-pct">2%</div></div><button class="gap-btn">Learn →</button></div>
+  <div class="gap-row" onclick="showPage('pres')"><div class="gap-icon">🎙️</div><div class="gap-info"><div class="gap-title">Executive Presentation & Board Presence</div><div class="gap-desc">Good stakeholder comms — not yet C-suite / board-level storytelling.</div></div><div class="gap-level"><div class="gap-bar"><div class="gap-fill" style="width:25%;background:var(--gold)"></div></div><div class="gap-pct">25%</div></div><button class="gap-btn">Learn →</button></div>
+  <div class="gap-row" onclick="showPage('mba1')"><div class="gap-icon">♟️</div><div class="gap-info"><div class="gap-title">Competitive Strategy (Porter's Five Forces, Blue Ocean)</div><div class="gap-desc">Operational but not strategic. Harvard Business School frameworks needed.</div></div><div class="gap-level"><div class="gap-bar"><div class="gap-fill" style="width:10%;background:var(--red)"></div></div><div class="gap-pct">10%</div></div><button class="gap-btn">Learn →</button></div>
+  <div class="section-hdr"><h3>Strengths — Leveraged by IIT Madras</h3><div class="line"></div><span class="badge badge-teal">Now Stronger</span></div>
+  <div class="grid3">
+    <div class="card-sm"><div style="font-size:9px;color:var(--teal);margin-bottom:5px">IITM + Your GenAI work</div><div style="font-size:11px;color:#fff">Deep Learning Theory</div><div style="font-size:10px;color:var(--muted2);margin-top:3px">RBCDSAI faculty · Backprop, CNNs, NLP, RL</div></div>
+    <div class="card-sm"><div style="font-size:9px;color:var(--green);margin-bottom:5px">Always Strong</div><div style="font-size:11px;color:#fff">RPA & Automation Architecture</div><div style="font-size:10px;color:var(--muted2);margin-top:3px">250+ bots · UiPath SA · PwC + Capgemini</div></div>
+    <div class="card-sm"><div style="font-size:9px;color:var(--green);margin-bottom:5px">Always Strong</div><div style="font-size:11px;color:#fff">Client Delivery & Pre-Sales</div><div style="font-size:10px;color:var(--muted2);margin-top:3px">14 RFPs · $10M pipeline · Walmart Honda Apollo</div></div>
+  </div>
+</div>
+
+<!-- ══ FAANG QUESTIONS ══ -->
+<div id="page-faang" class="page">
+  <div class="page-title">FAANG Question Bank</div>
+  <div class="page-sub">Real questions from Google, Amazon, Meta, Microsoft, Netflix, Uber, Stripe. Curated for solution architects. Click "Show Answer" for the framework approach.</div>
+  <div class="section-hdr"><h3>Distributed Systems</h3><div class="line"></div><span class="badge badge-red">Most Frequent</span></div>
+  <div class="q-block hard"><div class="q-title">Design Twitter/X — 500M users, global, real-time feed</div><div class="q-meta"><span class="qlvl hard">Hard</span><span class="q-company">Twitter · Meta · Google</span><div class="q-toggle" onclick="toggleQ(this)">Show Answer ▼</div></div><div class="q-answer">Tweet write → Kafka → fanout service → Redis timeline cache (push for normal users, pull for celebrities with 100M+ followers → hybrid). Search: Elasticsearch inverted index. Media: CDN + S3. Ask first: DAU, tweet volume, read:write ratio. <a href="https://blog.twitter.com/engineering/en_us/topics/infrastructure" target="_blank">Twitter Eng Blog →</a></div></div>
+  <div class="q-block hard"><div class="q-title">Design YouTube — video upload, processing, global streaming</div><div class="q-meta"><span class="qlvl hard">Hard</span><span class="q-company">Google · Netflix · Amazon</span><div class="q-toggle" onclick="toggleQ(this)">Show Answer ▼</div></div><div class="q-answer">Upload: chunked multipart to S3, resumable. Processing: async queue → transcoding workers → FFmpeg → multi-resolution. Streaming: CDN + adaptive bitrate HLS/DASH. Metadata: sharded MySQL/Spanner. Recommendations: offline ML pipeline (relevant given your IIT Madras ML track).</div></div>
+  <div class="q-block hard"><div class="q-title">Design a distributed message queue like Kafka from scratch</div><div class="q-meta"><span class="qlvl hard">Hard</span><span class="q-company">Amazon · LinkedIn · Confluent</span><div class="q-toggle" onclick="toggleQ(this)">Show Answer ▼</div></div><div class="q-answer">Log-structured storage, append-only segments, O(1) writes. Partitions = unit of parallelism. Consumer groups with independent offset tracking. ISR replication, leader election via KRaft. Delivery: at-least-once default, exactly-once via transactions. <a href="https://kafka.apache.org/documentation/#design" target="_blank">Kafka Design →</a></div></div>
+  <div class="q-block med"><div class="q-title">Design a notification system for 1B users (push, email, SMS, in-app)</div><div class="q-meta"><span class="qlvl med">Medium</span><span class="q-company">Meta · Google · Amazon</span><div class="q-toggle" onclick="toggleQ(this)">Show Answer ▼</div></div><div class="q-answer">Priority queues in Kafka by urgency tier. Worker pools per channel (FCM/APNs for push, SES for email, Twilio for SMS). Rate limiting per user per channel. Delivery tracking in Cassandra. Retry with exponential backoff + dead-letter queue.</div></div>
+  <div class="q-block med"><div class="q-title">Design a URL shortener like bit.ly</div><div class="q-meta"><span class="qlvl med">Medium</span><span class="q-company">Google · Amazon · Microsoft</span><div class="q-toggle" onclick="toggleQ(this)">Show Answer ▼</div></div><div class="q-answer">Hash function (MD5/SHA256, take first 7 chars). Collision handling: try next 7 chars. Storage: key-value (DynamoDB/Redis) — short code → long URL. Redirect: 301 (cached) vs 302 (tracked). Rate limiting on creation API. Analytics: async Kafka → stream processing → ClickHouse.</div></div>
+  <div class="section-hdr"><h3>AI/ML System Design</h3><div class="line"></div><span class="badge badge-teal">Your Edge (IIT Madras)</span></div>
+  <div class="q-block hard"><div class="q-title">Design a real-time recommendation system for 100M users (like Netflix)</div><div class="q-meta"><span class="qlvl hard">Hard</span><span class="q-company">Netflix · Spotify · Amazon</span><div class="q-toggle" onclick="toggleQ(this)">Show Answer ▼</div></div><div class="q-answer">Two stages: candidate generation (collaborative filtering, content-based — matrix factorization, neural CF from your IITM ML modules) + ranking (gradient boosted trees, features: recency, similarity, context). Offline: Spark batch training, daily retrain. Online: low-latency model serving (TorchServe/TF Serving). Feature store for real-time feature lookup. A/B testing framework for model evaluation. <a href="https://research.netflix.com/research-area/recommendations" target="_blank">Netflix Research →</a></div></div>
+  <div class="q-block hard"><div class="q-title">Design a RAG-based enterprise AI assistant (like what you'd build at PwC)</div><div class="q-meta"><span class="qlvl hard">Hard</span><span class="q-company">Microsoft · Salesforce · ServiceNow</span><div class="q-toggle" onclick="toggleQ(this)">Show Answer ▼</div></div><div class="q-answer">Ingestion: document chunking → embedding model (text-embedding-ada or BGE) → vector DB (Pinecone/Weaviate). Query: user question → embed → ANN search → top-K chunks → LLM (GPT-4/Claude) with context. Guardrails: content filtering, hallucination detection (SelfCheckGPT). Caching: semantic cache (GPTCache) for similar queries. Auth: per-user document ACL enforced at retrieval. This maps directly to your IIT Madras document understanding + GenAI work.</div></div>
+</div>
+
+<!-- ══ PRESENTATION MASTERY ══ -->
+<div id="page-pres" class="page">
+  <div class="page-title">Presentation Mastery</div>
+  <div class="page-sub">From technical presenter to boardroom storyteller. Harvard Kennedy School + TED-level frameworks. ~30 days.</div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">1</div><div class="phase-title">The Pyramid Principle — Lead with the Answer</div><div class="phase-duration">Days 1–2</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body open">
+      <div class="concept-body">
+        <p>Barbara Minto's Pyramid Principle (McKinsey): lead with conclusion, support with 3 grouped arguments, each supported by facts. Executives decide in the first 30 seconds.</p>
+        <div class="callout"><strong>Template:</strong> "My recommendation is X. [pause] Three reasons. First, [biggest reason]. Second, [business impact]. Third, [risk of inaction]. Let me walk through each."</div>
+        <ul><li><a href="https://www.mckinsey.com/capabilities/mckinsey-design/our-insights/the-art-of-the-executive-presentation" target="_blank">McKinsey: Art of Executive Presentations →</a></li><li><a href="https://www.amazon.com/Pyramid-Principle-Logic-Writing-Thinking/dp/0273710516" target="_blank">Book: The Pyramid Principle — Barbara Minto →</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">2</div><div class="phase-title">SCQA Framework — Situation, Complication, Question, Answer</div><div class="phase-duration">Days 3–4</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="concept-body">
+        <div class="callout"><strong>Your context example:</strong><br><strong>S:</strong> "ESG reporting takes 6 weeks per quarter manually."<br><strong>C:</strong> "New SEC regulations require monthly disclosure from Q1."<br><strong>Q:</strong> "How do we meet compliance without 3x headcount?"<br><strong>A:</strong> "AI-powered pipeline automating 80% of extraction — 4-day cycle time."</div>
+        <ul><li><a href="https://www.storytellingwithdata.com/blog/2021/5/5/the-scqa-framework" target="_blank">Storytelling With Data: SCQA →</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">3</div><div class="phase-title">TED Method, Voice & Stage Presence</div><div class="phase-duration">Days 5–10</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="concept-body">
+        <p>Open with tension, one core idea, close with a call to action. Slow to 120–140 wpm for key points. 2-second pause after key statements makes them land 3x harder.</p>
+        <ul><li><a href="https://www.ted.com/talks/chris_anderson_ted_s_secret_to_great_public_speaking" target="_blank">Chris Anderson: TED's Secret →</a></li><li><a href="https://www.amazon.com/Talk-Like-TED-Public-Speaking-Secrets/dp/1250041120" target="_blank">Book: Talk Like TED — Carmine Gallo →</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">4</div><div class="phase-title">Investor Pitching — The 10-Slide Framework</div><div class="phase-duration">Days 11–14</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="concept-body">
+        <div class="callout"><strong>Guy Kawasaki's 10 slides:</strong> Problem · Solution · Business model · Underlying magic · Marketing & sales · Competition · Team · Financial projections · Status & milestones · The Ask</div>
+        <ul><li><a href="https://guykawasaki.com/the-only-10-slides-you-need-in-your-pitch/" target="_blank">Guy Kawasaki: The 10-Slide Pitch →</a></li><li><a href="https://www.ycombinator.com/library/2u-how-to-design-a-better-pitch-deck" target="_blank">YC: Better Pitch Deck →</a></li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ VOCABULARY ══ -->
+<div id="page-vocab" class="page">
+  <div class="page-title">Vocabulary & Executive Language</div>
+  <div class="page-sub">One word a day, in context, used in real sentences from your work. 20 days to executive fluency.</div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">1</div><div class="phase-title">Business & Financial Terms (Days 1–7)</div><div class="phase-duration">Week 1</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body open">
+      <div class="concept-body">
+        <div class="callout"><strong>Day 1 — EBITDA:</strong> "Our AI automation initiative improved EBITDA by 3 points by reducing manual headcount costs."</div>
+        <div class="callout gold"><strong>Day 2 — IRR:</strong> "The 5-year IRR on this digital transformation is 34%, well above our 15% hurdle rate."</div>
+        <div class="callout green"><strong>Day 3 — TAM/SAM/SOM:</strong> "The TAM for AI-powered ESG reporting is $4B. We're targeting the $400M SAM of mid-market enterprises."</div>
+        <div class="callout"><strong>Day 4 — ARR & Run Rate:</strong> "We're at $800K ARR with a run rate suggesting $1.2M by Q4."</div>
+        <div class="callout gold"><strong>Day 5 — CAGR:</strong> "The RPA + AI market grows at 23% CAGR — we're positioned at exactly that intersection."</div>
+        <div class="callout green"><strong>Day 6 — Burn Rate & Runway:</strong> "At $80K/month burn, we have 18 months runway — enough to reach Series A metrics."</div>
+        <div class="callout"><strong>Day 7 — Gross Margin:</strong> "Our platform gross margin is 72% — comparable to Salesforce at scale."</div>
+        <ul><li><a href="https://a16z.com/2015/08/21/16-metrics/" target="_blank">a16z: 16 Startup Metrics Every Founder Must Know →</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">2</div><div class="phase-title">Power Phrases for Leaders (Days 8–14)</div><div class="phase-duration">Week 2</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="concept-body">
+        <div class="callout"><strong>"The strategic implication here is..."</strong> — connects tech to business outcomes</div>
+        <div class="callout gold"><strong>"Let me frame the trade-off..."</strong> — signals architect-level thinking</div>
+        <div class="callout green"><strong>"What's the risk-adjusted view?"</strong> — shows financial maturity</div>
+        <div class="callout"><strong>"I'd prioritise ruthlessly — focus on X, defer Y."</strong> — leaders make hard calls</div>
+        <div class="callout gold"><strong>"What would need to be true for this to work?"</strong> — consulting gold: forces assumption testing</div>
+        <div class="callout green"><strong>"I want to be direct with you..."</strong> — opens difficult conversations with authority + respect</div>
+        <ul><li><a href="https://www.amazon.com/Executive-Presence-Missing-Between-Success/dp/0062246895" target="_blank">Book: Executive Presence — Sylvia Ann Hewlett →</a></li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ASSERTIVENESS ══ -->
+<div id="page-assert" class="page">
+  <div class="page-title">Assertiveness & Influence</div>
+  <div class="page-sub">The difference between being heard and being ignored. Harvard Negotiation + Cialdini frameworks. ~25 days.</div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">1</div><div class="phase-title">DESC Script — Structured Assertive Communication</div><div class="phase-duration">Days 1–3</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body open">
+      <div class="concept-body">
+        <p><strong>D</strong>escribe → <strong>E</strong>xpress impact → <strong>S</strong>pecify what you want → <strong>C</strong>onsequences</p>
+        <div class="callout"><strong>Your context:</strong> "When scope expands without timeline adjustment [D], it risks burnout and quality [E]. I need a 2-week extension or scope reduction [S]. If we adjust, we deliver quality on time. If not, I must escalate to the steering committee [C]."</div>
+        <ul><li><a href="https://www.amazon.com/Crucial-Conversations-Talking-Stakes-Second/dp/1469266822" target="_blank">Book: Crucial Conversations →</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">2</div><div class="phase-title">Cialdini's 6 Principles of Influence</div><div class="phase-duration">Days 4–8</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="concept-body">
+        <ul>
+          <li><strong>Reciprocity:</strong> Give first. Share research, help their problem.</li>
+          <li><strong>Social Proof:</strong> "Google, Netflix, and Walmart moved to this pattern."</li>
+          <li><strong>Authority:</strong> "In the 14 RFPs I've architected, the biggest risk is always..."</li>
+          <li><strong>Scarcity:</strong> "If we don't start now, we're locked out of this window by Q3."</li>
+          <li><strong>Consistency:</strong> Small yeses first → "Does everyone agree current process is too slow?" → "Then let's look at automation."</li>
+          <li><strong>Liking:</strong> Invest in relationships before you need them.</li>
+        </ul>
+        <ul><li><a href="https://www.amazon.com/Influence-Psychology-Persuasion-Robert-Cialdini/dp/006124189X" target="_blank">Book: Influence — Robert Cialdini →</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">3</div><div class="phase-title">Harvard Negotiation — Getting to Yes</div><div class="phase-duration">Days 9–14</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="concept-body">
+        <ul>
+          <li><strong>Separate people from problem:</strong> "The scope creep is the issue, not the PM."</li>
+          <li><strong>Focus on interests, not positions:</strong> "Their deadline is a position. The client demo is the interest — show a prototype in 3 weeks, full feature in 6."</li>
+          <li><strong>BATNA:</strong> Know your Best Alternative before every negotiation. That's your leverage.</li>
+        </ul>
+        <ul><li><a href="https://www.amazon.com/Getting-Yes-Negotiating-Agreement-Without/dp/0143118757" target="_blank">Book: Getting to Yes — Fisher & Ury →</a></li><li><a href="https://www.pon.harvard.edu/category/free-reports/" target="_blank">Harvard PON: Free Reports →</a></li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SALES ══ -->
+<div id="page-sales" class="page">
+  <div class="page-title">Sales & Consultative Selling</div>
+  <div class="page-sub">You've created a $10M pipeline with 14 RFPs. Now formalise those instincts into frameworks. ~35 days.</div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">1</div><div class="phase-title">SPIN Selling — The Evidence-Based Framework</div><div class="phase-duration">Days 1–3</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body open">
+      <div class="concept-body">
+        <ul>
+          <li><strong>S — Situation:</strong> "What's your current invoice processing workflow?"</li>
+          <li><strong>P — Problem:</strong> "What are the biggest bottlenecks? How much manual exception handling?"</li>
+          <li><strong>I — Implication:</strong> "When that takes 6 hours per batch, what's the impact on DSO? Month-end close?"</li>
+          <li><strong>N — Need-payoff:</strong> "If you could cut that to 30 minutes, what would that mean for your team's capacity?"</li>
+        </ul>
+        <div class="callout green">When the buyer says the value out loud — it's true. When you say it — it's a claim. Make them say it.</div>
+        <ul><li><a href="https://www.amazon.com/SPIN-Selling-Neil-Rackham/dp/0070511136" target="_blank">Book: SPIN Selling — Neil Rackham →</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">2</div><div class="phase-title">The Challenger Sale — Teach, Tailor, Take Control</div><div class="phase-duration">Days 4–7</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="concept-body">
+        <div class="callout"><strong>Challenger Teach sequence for your context:</strong><br>"Most companies using automation focus on headcount reduction. But the ROI leaders redeploy talent to higher-value work — and see 2x the 3-year EBITDA impact. Your team's best people are spending 60% of their time on data entry. Here's what the leaders are doing instead..." → your solution.</div>
+        <ul><li><a href="https://www.amazon.com/Challenger-Sale-Control-Customer-Conversation/dp/1591844355" target="_blank">Book: The Challenger Sale →</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">3</div><div class="phase-title">Value-Based ROI Selling</div><div class="phase-duration">Days 8–10</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="concept-body">
+        <div class="callout gold"><strong>ROI model for your invoice AI pitch:</strong><br>Current: 5,000 invoices × 12 min = 1,000 hrs/month = $25,000 labour<br>Future: 5,000 × 2 min = 167 hrs = $4,167<br>Saving: $20,833/month = $250,000/year<br>Investment: $80K impl + $24K licence = $104K<br>Payback: 5.5 months · 3-yr NPV: $568,000</div>
+      </div>
+    </div>
+  </div>
+  <div class="phase-block">
+    <div class="phase-hdr" onclick="togglePhase(this)"><div class="phase-num">4</div><div class="phase-title">MEDDIC — Qualification & Deal Control</div><div class="phase-duration">Days 11–14</div><div class="phase-arrow">▶</div></div>
+    <div class="phase-body">
+      <div class="concept-body">
+        <ul>
+          <li><strong>M — Metrics:</strong> What KPI improves?</li><li><strong>E — Economic Buyer:</strong> Who signs the PO?</li>
+          <li><strong>D — Decision Criteria:</strong> How will they choose?</li><li><strong>D — Decision Process:</strong> What are the steps?</li>
+          <li><strong>I — Identify Pain:</strong> What's the burning problem?</li><li><strong>C — Champion:</strong> Who advocates internally for you?</li>
+        </ul>
+        <ul><li><a href="https://blog.hubspot.com/sales/meddic" target="_blank">HubSpot: MEDDIC Guide →</a></li><li><a href="https://www.amazon.com/MEDDICC-Ultimate-Framework-Accelerate-Revenue/dp/B08S3TB9SC" target="_blank">Book: MEDDICC — Andy Whyte →</a></li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PLACEHOLDER PAGES ══ -->
+<div id="page-sys2" class="page"><div class="page-title">Distributed Systems</div><div class="page-sub">Raft, Paxos, CRDT, Gossip, 2PC, distributed transactions. Coming next in your curriculum.</div><div class="callout">Click any concept in the sidebar to explore. This track builds directly on your CAP Theorem foundation.</div></div>
+<div id="page-sys3" class="page"><div class="page-title">Data & Storage Architecture</div><div class="page-sub">Lakehouse, Data Mesh, Streaming, Delta Lake, Iceberg, Flink. Critical gap area.</div><div class="callout">Your Informatica/Alteryx/Tableau background gives a headstart here. This track modernises it.</div></div>
+<div id="page-ea1" class="page"><div class="page-title">Enterprise Architecture Frameworks</div><div class="page-sub">TOGAF, Zachman, ArchiMate — the formal language of Enterprise Architects. This is your biggest gap for the EA title.</div><div class="callout"><strong>Start here:</strong> <a href="https://www.opengroup.org/togaf" target="_blank">TOGAF Overview →</a> | <a href="https://www.udemy.com/course/togaf-9-combined/" target="_blank">TOGAF Udemy Course →</a></div></div>
+<div id="page-ea2" class="page"><div class="page-title">Cloud Architecture</div><div class="page-sub">AWS Well-Architected, Azure Architecture Center, GCP best practices. You have multi-cloud exposure — deepen it.</div><div class="callout"><a href="https://aws.amazon.com/architecture/well-architected/" target="_blank">AWS Well-Architected Framework →</a> | <a href="https://learn.microsoft.com/en-us/azure/architecture/" target="_blank">Azure Architecture Center →</a></div></div>
+<div id="page-ea3" class="page"><div class="page-title">Digital Transformation Leadership</div><div class="page-sub">Change management, operating model design, transformation programme governance.</div><div class="callout"><a href="https://hbr.org/2018/03/why-so-many-high-profile-digital-transformations-fail" target="_blank">HBR: Why Digital Transformations Fail →</a></div></div>
+<div id="page-ai2" class="page"><div class="page-title">LLMs & GenAI Architecture</div><div class="page-sub">Building on your IIT Madras deep learning foundation + PwC GenAI work.</div><div class="callout">Transformers, RAG, fine-tuning, agent frameworks, LLMOps. Your IIT Madras NLP + attention foundation makes this accessible. Start: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention Is All You Need →</a></div></div>
+<div id="page-ai3" class="page"><div class="page-title">MLOps & AI Infrastructure</div><div class="page-sub">Production ML systems — the gap between IITM theory and real-world deployment.</div><div class="callout">MLflow, Kubeflow, Feature Stores, Model Monitoring. Start: <a href="https://ml-ops.org/" target="_blank">ml-ops.org →</a> | <a href="https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/" target="_blank">Designing ML Systems — Chip Huyen →</a></div></div>
+<div id="page-st1" class="page"><div class="page-title">Product Strategy & Customer Discovery</div><div class="page-sub">Jobs-to-be-done, product-market fit, customer interviews, prioritisation frameworks.</div><div class="callout"><a href="https://www.amazon.com/Continuous-Discovery-Habits-Discover-Products/dp/1736633309" target="_blank">Book: Continuous Discovery Habits →</a> | <a href="https://www.ycombinator.com/library" target="_blank">YC Startup Library →</a></div></div>
+<div id="page-st2" class="page"><div class="page-title">Business Models & Financial Acumen</div><div class="page-sub">P&L ownership, unit economics, SaaS metrics, cap table basics. Your biggest blind spot as a future founder.</div><div class="callout"><a href="https://a16z.com/2015/08/21/16-metrics/" target="_blank">a16z: 16 Startup Metrics →</a> | <a href="https://www.amazon.com/Venture-Deals-Smarter-Lawyer-Capitalist/dp/1119594820" target="_blank">Book: Venture Deals — Brad Feld →</a></div></div>
+<div id="page-st3" class="page"><div class="page-title">Fundraising & Venture Capital</div><div class="page-sub">Pre-seed to Series A mechanics, dilution, term sheets, investor relations. Almost zero base — start here.</div><div class="callout"><a href="https://www.ycombinator.com/library/4A-a-guide-to-seed-fundraising" target="_blank">YC: Guide to Seed Fundraising →</a> | <a href="https://www.amazon.com/Venture-Deals-Smarter-Lawyer-Capitalist/dp/1119594820" target="_blank">Book: Venture Deals →</a></div></div>
+<div id="page-mba1" class="page"><div class="page-title">Strategic Management</div><div class="page-sub">Porter's Five Forces, Blue Ocean Strategy, disruptive innovation, competitive moats.</div><div class="callout"><a href="https://online.hbs.edu/courses/business-strategy/" target="_blank">Harvard Online: Business Strategy →</a> | <a href="https://www.amazon.com/Competitive-Strategy-Techniques-Industries-Competitors/dp/0684841487" target="_blank">Book: Competitive Strategy — Porter →</a></div></div>
+<div id="page-mba2" class="page"><div class="page-title">Financial Acumen for Tech Leaders</div><div class="page-sub">Reading P&Ls, DCF, ROI models, investment decisions. Critical gap for both EA and Founder paths.</div><div class="callout"><a href="https://online.hbs.edu/courses/financial-accounting/" target="_blank">Harvard Online: Financial Accounting →</a> | <a href="https://www.amazon.com/Accounting-Made-Simple-Explained-Pages/dp/0981454224" target="_blank">Book: Accounting Made Simple →</a></div></div>
+<div id="page-mba3" class="page"><div class="page-title">Leadership & Org Behavior</div><div class="page-sub">You already lead 70+ people. This track deepens your frameworks: situational leadership, psychological safety, org design.</div><div class="callout"><a href="https://hbr.org/2017/08/high-performing-teams-need-psychological-safety-heres-how-to-create-it" target="_blank">HBR: Psychological Safety →</a> | <a href="https://www.amazon.com/Radical-Candor-Revised-Kick-Ass-Humanity/dp/1250235375" target="_blank">Book: Radical Candor →</a></div></div>
+<div id="page-resources" class="page">
+  <div class="page-title">Books, Courses & Papers</div>
+  <div class="page-sub">The complete resource library for your 365-day journey.</div>
+  <div class="section-hdr"><h3>Essential Books</h3><div class="line"></div></div>
+  <div class="res-row"><div class="res-icon">📚</div><div class="res-info"><div class="res-title">Designing Data-Intensive Applications</div><div class="res-meta">Martin Kleppmann · System Design bible</div></div><a class="res-link" href="https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/" target="_blank">View →</a></div>
+  <div class="res-row"><div class="res-icon">📚</div><div class="res-info"><div class="res-title">Designing Machine Learning Systems</div><div class="res-meta">Chip Huyen · O'Reilly · MLOps in practice</div></div><a class="res-link" href="https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/" target="_blank">View →</a></div>
+  <div class="res-row"><div class="res-icon">📚</div><div class="res-info"><div class="res-title">Zero to One</div><div class="res-meta">Peter Thiel · Startup strategy + competitive moats</div></div><a class="res-link" href="https://www.amazon.com/Zero-One-Notes-Startups-Future/dp/0804139296" target="_blank">View →</a></div>
+  <div class="res-row"><div class="res-icon">📚</div><div class="res-info"><div class="res-title">Venture Deals</div><div class="res-meta">Brad Feld · VC mechanics, term sheets, dilution</div></div><a class="res-link" href="https://www.amazon.com/Venture-Deals-Smarter-Lawyer-Capitalist/dp/1119594820" target="_blank">View →</a></div>
+  <div class="res-row"><div class="res-icon">📚</div><div class="res-info"><div class="res-title">SPIN Selling</div><div class="res-meta">Neil Rackham · Evidence-based B2B selling</div></div><a class="res-link" href="https://www.amazon.com/SPIN-Selling-Neil-Rackham/dp/0070511136" target="_blank">View →</a></div>
+  <div class="section-hdr"><h3>Free Courses</h3><div class="line"></div></div>
+  <div class="res-row"><div class="res-icon">🎓</div><div class="res-info"><div class="res-title">MIT 6.824: Distributed Systems</div><div class="res-meta">Raft, Paxos, Spanner, GFS — complements IIT Madras</div></div><a class="res-link" href="https://pdos.csail.mit.edu/6.824/" target="_blank">Course →</a></div>
+  <div class="res-row"><div class="res-icon">🎓</div><div class="res-info"><div class="res-title">Stanford CS224n: NLP with Deep Learning</div><div class="res-meta">Extends your IIT Madras NLP foundation</div></div><a class="res-link" href="https://web.stanford.edu/class/cs224n/" target="_blank">Course →</a></div>
+  <div class="res-row"><div class="res-icon">🎓</div><div class="res-info"><div class="res-title">Harvard Online: Business Strategy</div><div class="res-meta">Porter frameworks, competitive analysis</div></div><a class="res-link" href="https://online.hbs.edu/courses/business-strategy/" target="_blank">Course →</a></div>
+  <div class="res-row"><div class="res-icon">🎓</div><div class="res-info"><div class="res-title">YC Startup School Library</div><div class="res-meta">Free founder curriculum from Y Combinator</div></div><a class="res-link" href="https://www.ycombinator.com/library" target="_blank">Library →</a></div>
+</div>
+
+</main>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast">
+  <div class="toast-title" id="toast-title">✓ Concept Complete!</div>
+  <div id="toast-body">+50 XP earned. Keep going!</div>
+</div>
+
+<script>
+// ══ STATE ══
+const state = {
+  done: new Set(JSON.parse(localStorage.getItem('done') || '[]')),
+  currentConcept: 0,
+};
+const CONCEPTS = ['today','sys1','sys2','sys3','ea1','ea2','ea3','ai1','ai2','ai3','st1','st2','st3','mba1','mba2','mba3','pres','vocab','assert','sales'];
+
+// ══ NAVIGATION ══
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const pg = document.getElementById('page-' + id);
+  if (pg) pg.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    n.classList.toggle('active', n.dataset.page === id);
+  });
+  window.scrollTo(0,0);
+}
+
+document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+  item.addEventListener('click', () => showPage(item.dataset.page));
+});
+
+// ══ TABS ══
+document.querySelectorAll('.tab[data-tab-group]').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const group = tab.dataset.tabGroup;
+    const target = tab.dataset.tabTarget;
+    // deactivate all tabs in group
+    document.querySelectorAll(`.tab[data-tab-group="${group}"]`).forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    // hide all panels in group
+    document.querySelectorAll(`.tab-panel[data-group="${group}"]`).forEach(p => p.style.display = 'none');
+    const panel = document.getElementById(target);
+    if (panel) panel.style.display = 'block';
+  });
+});
+
+// ══ PHASE ACCORDION ══
+function togglePhase(hdr) {
+  const body = hdr.nextElementSibling;
+  const arrow = hdr.querySelector('.phase-arrow');
+  body.classList.toggle('open');
+  if (arrow) arrow.classList.toggle('open');
+}
+
+// ══ FAANG Q TOGGLE ══
+function toggleQ(el) {
+  const ans = el.closest('.q-block').querySelector('.q-answer');
+  ans.classList.toggle('open');
+  el.textContent = ans.classList.contains('open') ? 'Hide ▲' : 'Show Answer ▼';
+}
+
+// ══ MARK TOPIC DONE (topic checkboxes) ══
+function markTopicDone(el, id) {
+  if (el.classList.contains('done')) {
+    el.classList.remove('done');
+    el.textContent = '';
+    state.done.delete(id);
+  } else {
+    el.classList.add('done');
+    el.classList.remove('today','iitm');
+    el.textContent = '✓';
+    const row = el.closest('.topic-row');
+    if (row) { row.classList.add('completed'); const nm = row.querySelector('.topic-name'); if(nm) nm.classList.add('completed'); }
+    state.done.add(id);
+    showToast('Topic complete!', '+50 XP · ' + state.done.size + ' done total');
+  }
+  save();
+  updateStats();
+}
+
+// ══ MARK COMPLETE (Today's Concept big button) ══
+function markComplete() {
+  const btn = document.getElementById('mark-complete-btn');
+  const statusEl = document.getElementById('concept-status');
+  btn.textContent = '✓ Completed!';
+  btn.classList.remove('btn-success');
+  btn.classList.add('btn-outline');
+  btn.disabled = true;
+  if (statusEl) { statusEl.textContent = 'Completed ✓'; statusEl.style.color = 'var(--teal)'; }
+  state.done.add('cap-concept');
+  save();
+  updateStats();
+  showToast('🎉 Day 1 Complete!', '+50 XP · Streak: 1 day · Next: Consistent Hashing tomorrow');
+}
+
+// ══ NAVIGATE PREV/NEXT ══
+function navigate(dir) {
+  const idx = CONCEPTS.indexOf('today');
+  const next = CONCEPTS[idx + dir];
+  if (next) showPage(next);
+}
+
+// ══ STATS ══
+function updateStats() {
+  const total = 142;
+  const done = state.done.size;
+  const left = total - done;
+  const pct = Math.min(100, Math.round((done / total) * 100));
+  document.getElementById('xp-bar').style.width = pct + '%';
+  document.getElementById('xp-day').textContent = done + ' / 365 days';
+  const sd = document.getElementById('stat-done'); if (sd) { sd.textContent = done; }
+  const sl = document.getElementById('stat-left'); if (sl) { sl.textContent = Math.max(0,left); }
+  const dd = document.getElementById('d-done'); if (dd) { dd.textContent = done; }
+  const dg = document.getElementById('d-gaps'); if (dg) { dg.textContent = Math.max(0, 23 - done); }
+}
+
+// ══ TOAST ══
+function showToast(title, body) {
+  const t = document.getElementById('toast');
+  const tt = document.getElementById('toast-title');
+  const tb = document.getElementById('toast-body');
+  tt.textContent = title;
+  tb.textContent = body;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ══ PERSIST ══
+function save() {
+  localStorage.setItem('done', JSON.stringify([...state.done]));
+}
+
+// ══ INIT ══
+updateStats();
+// restore completed topic checks from storage
+state.done.forEach(id => {
+  const row = document.querySelector(`[data-concept="${id}"]`);
+  if (row) {
+    const check = row.querySelector('.topic-check');
+    if (check) { check.classList.add('done'); check.classList.remove('today','iitm'); check.textContent = '✓'; }
+    row.classList.add('completed');
+    const nm = row.querySelector('.topic-name'); if (nm) nm.classList.add('completed');
+  }
+});
+
+// ══ PWA MANIFEST (injected inline so single-file works) ══
+const manifestData = {
+  name: "Architect's Blueprint — Sriram",
+  short_name: "Blueprint",
+  description: "365-day mastery platform: Enterprise Architect · AI Leader · Startup Founder",
+  start_url: "./",
+  display: "standalone",
+  background_color: "#08080f",
+  theme_color: "#7c6fff",
+  orientation: "portrait-primary",
+  categories: ["education","productivity"],
+  icons: [
+    { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%230f0f1a'/%3E%3Ccircle cx='96' cy='96' r='32' fill='none' stroke='%237c6fff' stroke-width='8'/%3E%3Ccircle cx='96' cy='96' r='10' fill='%237c6fff'/%3E%3C/svg%3E", sizes: "192x192", type: "image/svg+xml", purpose: "any maskable" },
+    { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%230f0f1a'/%3E%3Ccircle cx='256' cy='256' r='90' fill='none' stroke='%237c6fff' stroke-width='22'/%3E%3Ccircle cx='256' cy='256' r='28' fill='%237c6fff'/%3E%3C/svg%3E", sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }
+  ],
+  shortcuts: [
+    { name: "Today's Concept", short_name: "Today", description: "Open today's learning concept", url: "./#today", icons: [{ src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='20' fill='%230f0f1a'/%3E%3Ccircle cx='48' cy='48' r='20' fill='%233dd68c'/%3E%3C/svg%3E", sizes: "96x96" }] },
+    { name: "FAANG Questions", short_name: "FAANG", description: "Practice interview questions", url: "./#faang", icons: [{ src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='20' fill='%230f0f1a'/%3E%3Ccircle cx='48' cy='48' r='20' fill='%23ff6b6b'/%3E%3C/svg%3E", sizes: "96x96" }] }
+  ]
+};
+const blob = new Blob([JSON.stringify(manifestData)], {type:'application/json'});
+const manifestURL = URL.createObjectURL(blob);
+document.getElementById('pwa-manifest').href = manifestURL;
+
+// ══ SERVICE WORKER (offline support — cache entire page) ══
+if ('serviceWorker' in navigator) {
+  const swCode = `
+    const CACHE = 'blueprint-v2';
+    self.addEventListener('install', e => {
+      self.skipWaiting();
+      e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', './index.html'])));
+    });
+    self.addEventListener('activate', e => {
+      e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));
+    });
+    self.addEventListener('fetch', e => {
+      e.respondWith(caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('./'))));
+    });
+  `;
+  const swBlob = new Blob([swCode], {type:'application/javascript'});
+  const swURL = URL.createObjectURL(swBlob);
+  navigator.serviceWorker.register(swURL).catch(()=>{});
+}
+
+// ══ MOBILE SIDEBAR TOGGLE ══
+const sidebar = document.querySelector('.sidebar');
+const content = document.querySelector('.content');
+// Create hamburger button for mobile
+const hamBtn = document.createElement('button');
+hamBtn.id = 'ham-btn';
+hamBtn.innerHTML = '☰';
+hamBtn.style.cssText = `
+  display:none;position:fixed;top:12px;left:12px;z-index:300;
+  background:var(--bg2);border:1px solid var(--border2);border-radius:8px;
+  padding:8px 10px;font-size:16px;color:var(--text);cursor:pointer;
+  box-shadow:0 2px 8px #00000060;
+`;
+document.body.appendChild(hamBtn);
+
+// Overlay for mobile
+const overlay = document.createElement('div');
+overlay.id = 'sidebar-overlay';
+overlay.style.cssText = `display:none;position:fixed;inset:0;background:#00000070;z-index:150;`;
+document.body.appendChild(overlay);
+
+function isMobile(){ return window.innerWidth < 768; }
+
+function updateMobileUI() {
+  if (isMobile()) {
+    hamBtn.style.display = 'block';
+    sidebar.style.transform = 'translateX(-100%)';
+    sidebar.style.transition = 'transform .25s ease';
+    content.style.marginLeft = '0';
+    content.style.width = '100%';
+  } else {
+    hamBtn.style.display = 'none';
+    sidebar.style.transform = 'translateX(0)';
+    content.style.marginLeft = '260px';
+    content.style.width = '';
+    overlay.style.display = 'none';
+  }
+}
+
+hamBtn.addEventListener('click', () => {
+  const open = sidebar.style.transform === 'translateX(0px)';
+  sidebar.style.transform = open ? 'translateX(-100%)' : 'translateX(0px)';
+  overlay.style.display = open ? 'none' : 'block';
+});
+
+overlay.addEventListener('click', () => {
+  sidebar.style.transform = 'translateX(-100%)';
+  overlay.style.display = 'none';
+});
+
+// Auto-close sidebar on nav tap (mobile)
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (isMobile()) {
+      sidebar.style.transform = 'translateX(-100%)';
+      overlay.style.display = 'none';
+    }
+  });
+});
+
+window.addEventListener('resize', updateMobileUI);
+updateMobileUI();
+
+// ══ PWA INSTALL PROMPT ══
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  // Show install banner
+  const banner = document.createElement('div');
+  banner.style.cssText = `
+    position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+    background:var(--bg2);border:1px solid var(--accent);border-radius:12px;
+    padding:12px 20px;font-size:11px;color:var(--text);z-index:998;
+    display:flex;align-items:center;gap:12px;box-shadow:0 4px 20px #00000060;
+    white-space:nowrap;
+  `;
+  banner.innerHTML = `
+    <span>📲 Install as app on your phone</span>
+    <button onclick="installPWA()" style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:10px;cursor:pointer;font-family:inherit">Install</button>
+    <button onclick="this.closest('div').remove()" style="background:transparent;color:var(--muted);border:none;cursor:pointer;font-size:14px">✕</button>
+  `;
+  document.body.appendChild(banner);
+  setTimeout(() => banner.remove(), 15000);
+});
+
+window.installPWA = async () => {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  const { outcome } = await deferredInstallPrompt.userChoice;
+  if (outcome === 'accepted') showToast('📲 App installed!', 'Find Architect\'s Blueprint on your home screen');
+  deferredInstallPrompt = null;
+};
+
+window.addEventListener('appinstalled', () => {
+  showToast('✅ Successfully installed!', 'Open from your Android home screen anytime');
+});
+</script>
+</body>
+</html>
